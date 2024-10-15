@@ -11,5 +11,8 @@
   "description": "",
   "exports": {
     "./useBalance": "./src/hooks/useBalance.ts"
+  },
+  "dependencies": {
+    "recoil": "^0.7.7"
   }
 }
