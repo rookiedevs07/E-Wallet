@@ -30,11 +30,6 @@ export default function RootLayout({
                 icon={<P2PTransferIcon></P2PTransferIcon>}
                 title="PeerToPeer"
               />
-              <SidebarItem
-                href={"/p2p"}
-                icon={<P2PTransferIcon></P2PTransferIcon>}
-                title="PeerToPeerTest"
-              />
             </div>
           </div>
           {children}
