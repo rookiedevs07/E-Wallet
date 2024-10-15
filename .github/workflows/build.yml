@@ -3,11 +3,12 @@ name: Build on PR
 on:
   pull_request:
     branches:
-      - master
+      - main # change this if your branch is master or something else
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out code
         uses: actions/checkout@v3
