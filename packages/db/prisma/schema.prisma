@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid()) // Use UUID as the primary key
+  email       String?  @unique
+  username        String?
+  mobile      String   @unique
+  password    String
+  verification Boolean
+  balance Balance?
+  transactions BankTransaction[]
+  // withdraw OffRampTransaction[]
+  p2psent PPTransfer[] @relation(name: "P2PFromUser")
+  p2preceived PPTransfer[] @relation(name: "P2PToUser")
+  // banktransactions HDFCTransaction[]
+}
+
+
+model Balance{
+  id  String   @id @default(uuid())
+  amount Int
+  userId String @unique
+  user User @relation(fields:[userId],references: [id])
+}
+
+model BankTransaction {
+  id  String   @id @default(uuid())
+  status    OnRampStatus
+  token     String       @unique
+  provider  String
+  amount    Int
+  startTime DateTime
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+
+// model OffRampTransaction {
+//   id  String   @id @default(uuid())
+//   status    OnRampStatus
+//   token     String       @unique
+//   amount    Int
+//   startTime DateTime
+//   userId    String
+//   user      User    @relation(fields: [userId], references: [id])
+// }
+
+model PPTransfer {
+  id String @id @default(uuid())
+  amount Int
+  fromUserId String
+  toUserId String
+  timestamp DateTime
+  status OnRampStatus @default(Pending) 
+  fromUser User @relation(fields: [fromUserId], references: [id], name: "P2PFromUser")
+  toUser User @relation(fields: [toUserId], references: [id], name: "P2PToUser")
+}
+
+
+model HDFCUser{
+  id        String   @id @default(uuid()) // Unique identifier for each transaction
+  accno   String @unique
+  username    String @unique
+  accbal Int 
+  password String
+}
+
+enum OnRampStatus{
+  Success
+  Failure
+  Pending
+}
