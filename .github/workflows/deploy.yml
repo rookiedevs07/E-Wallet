@@ -26,3 +26,15 @@ jobs:
 
       - name: Verify Pushed Image
         run: docker pull onkar838/user-app:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull onkar838/user-app:latest
+            sudo docker stop wallet-container || true
+            sudo docker rm wallet-container || true
+            sudo docker run -d --name wallet-container -p 3005:3000 onkar838/user-app:latest
