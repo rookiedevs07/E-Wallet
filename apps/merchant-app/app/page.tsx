@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       merchant test merchant test merchant test merchant test merchant test
-      merchant test this is merchant main
+      merchant test this is merchant main merchant test this is merchant main
     </div>
   );
 }
