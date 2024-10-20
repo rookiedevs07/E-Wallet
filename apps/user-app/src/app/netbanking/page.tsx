@@ -37,9 +37,9 @@ const LogIn = () => {
 
     try {
       // Make the request
-      const response = await axios.post("http://localhost:5001/withdraw", {
+      const response = await axios.post("http://bank-server:5001/withdraw", {
         token: localStorage.getItem("transToken"),
-        webhookUrl: "http://localhost:5000/hdfcwebhook",
+        webhookUrl: "http://webhook:5000/hdfcwebhook",
         username: values.username,
         password: values.password,
       });

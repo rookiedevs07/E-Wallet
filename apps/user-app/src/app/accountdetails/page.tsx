@@ -42,9 +42,9 @@ const AccountDetails = () => {
 
     try {
       // Make the request
-      const response = await axios.post("http://localhost:5001/deposit", {
+      const response = await axios.post("http://bank-server:5001/deposit", {
         token: localStorage.getItem("offRampToken"),
-        webhookUrl: "http://localhost:5000/hdfcwebhookofframp",
+        webhookUrl: "http://webhook:5000/hdfcwebhookofframp",
         accno: values.accno,
       });
       localStorage.clear();
