@@ -97,10 +97,22 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/ubuntu/E-wallet # Navigate to the directory where repo is cloned
-            ls -la  # Check if docker-compose.yml is present (for debugging)
+            cd /home/ubuntu
+
+            # Remove existing repository if it exists
+            if [ -d ".git" ]; then
+              sudo rm -rf /home/ubuntu/*
+            fi
+
+            # Clone the repository
+            git clone https://github.com/your-username/your-repo-name.git .
+
+            # Verify docker-compose.yml is present
+            ls -la
+
+            # Pull the latest Docker images
             sudo docker-compose pull
 
-            # Restart the services using docker-compose
+            # Restart the services using Docker Compose
             sudo docker-compose down
             sudo docker-compose up -d
