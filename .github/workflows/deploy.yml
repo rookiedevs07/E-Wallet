@@ -97,7 +97,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # Pull the latest images
+            cd /home/ubuntu/E-wallet # Navigate to the directory where repo is cloned
+            ls -la  # Check if docker-compose.yml is present (for debugging)
             sudo docker-compose pull
 
             # Restart the services using docker-compose
