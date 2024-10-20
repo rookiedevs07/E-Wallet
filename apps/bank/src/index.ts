@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 // Apply CORS middleware
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from your frontend
+    origin: ["http://user-app:3000", "http://localhost:3000"], // Allow requests from your frontend
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS for preflight
     credentials: true, // Allow cookies and credentials
   })
@@ -20,6 +20,10 @@ app.use(express.json());
 
 // Add custom middleware to handle preflight requests
 app.options("*", cors()); // Allow CORS preflight for all routes
+
+app.get("/", (req: any, res: any) => {
+  res.status(200).json({ msg: "bk server" });
+});
 
 app.post("/withdraw", async (req: any, res: any) => {
   const { username, password, token, webhookUrl } = req.body;

@@ -8,9 +8,10 @@ const prisma = new PrismaClient();
 app.use(
   cors({
     origin: [
+      "http://user-app:3000",
       "http://localhost:3000",
-      "https://c958-157-119-200-177.ngrok-free.app",
       "http://localhost:5001",
+      "http://bank-server:5001",
     ], // Allow requests from your frontend and bank server
     methods: ["GET", "POST", "PUT", "DELETE"], // Include OPTIONS for preflight
     credentials: true, // Allow cookies and credentials
