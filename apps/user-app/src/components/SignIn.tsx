@@ -77,7 +77,7 @@ const SignIn = () => {
         </div>
 
         <div className="text-[20px] font-bold text-center text-[#768ea7]">
-          Sign In to Paytm
+          Log In to Paytm
         </div>
 
         {/* Form Section */}
