@@ -105,7 +105,7 @@ jobs:
             fi
 
             # Clone the repository into a new E-wallet directory
-            git clone https://github.com/your-username/your-repo-name.git E-wallet
+            git clone https://github.com/rookiedevs07/E-Wallet.git E-wallet
 
             # Navigate into the E-wallet directory
             cd E-wallet
