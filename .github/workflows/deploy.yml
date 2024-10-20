@@ -99,13 +99,16 @@ jobs:
           script: |
             cd /home/ubuntu
 
-            # Remove existing repository if it exists
-            if [ -d ".git" ]; then
-              sudo rm -rf /home/ubuntu/*
+            # Remove existing E-wallet directory if it exists
+            if [ -d "E-wallet" ]; then
+              sudo rm -rf E-wallet
             fi
 
-            # Clone the repository
-            git clone https://github.com/your-username/your-repo-name.git .
+            # Clone the repository into a new E-wallet directory
+            git clone https://github.com/your-username/your-repo-name.git E-wallet
+
+            # Navigate into the E-wallet directory
+            cd E-wallet
 
             # Verify docker-compose.yml is present
             ls -la
