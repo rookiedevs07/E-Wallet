@@ -65,6 +65,8 @@ jobs:
           file: ./docker/Dockerfile.user-app
           push: true
           tags: onkar838/user-app:latest
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
       # Build and push bank-server image
       - name: Build and Push Docker image for bank-server
@@ -74,6 +76,8 @@ jobs:
           file: ./docker/Dockerfile.bank-server
           push: true
           tags: onkar838/bank-server:latest
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
       # Build and push webhook image
       - name: Build and Push Docker image for webhook
@@ -83,6 +87,8 @@ jobs:
           file: ./docker/Dockerfile.webhook
           push: true
           tags: onkar838/webhook:latest
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
       - name: Verify Pushed Images
         run: |
